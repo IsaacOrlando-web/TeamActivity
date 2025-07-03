@@ -25,3 +25,4 @@ _BYU-Pathway Worldwide improves lives through access to spiritually based, onlin
 
 
 
+URL: [![Netlify Status](https://api.netlify.com/api/v1/badges/0bc402c1-0d1d-4cad-a43c-ce5e9567b319/deploy-status?branch=)](https://app.netlify.com/projects/dashing-boba-e1b545/deploys?branch=)
