@@ -1,9 +1,28 @@
 import { getLocalStorage } from "./utils.mjs";
 
+let totalPrice = 0; //Global variable to hold total price
+const totalCartPrice = document.getElementById("cart-total-price"); // Get the element to display total price
+const cartFooter = document.querySelector(".cart-footer"); // Get the footer element, to hide it if cart is empty
+
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
+  if (!cartItems || cartItems.length === 0) {
+    cartFooter.classList.add("hide"); // Hide footer if cart is empty
+  } else {
+    totalCartPrice.textContent = `$${sumPrices(cartItems)}`; // Display total price in the footer
+  }
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+}
+
+// Function to calculate total price of items in the cart
+function sumPrices(items) {
+  items.forEach((item) => {
+    // Iterate through each item to calculate total price
+    totalPrice += item.FinalPrice; // Add item's price to totalPrice
+  });
+
+  return totalPrice; // Return the total price
 }
 
 function cartItemTemplate(item) {
