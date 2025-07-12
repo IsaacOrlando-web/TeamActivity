@@ -1,7 +1,3 @@
-
-function productCardTemplate(product) {
-  return `<li class="product-card">
-
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
@@ -13,17 +9,12 @@ function productCardTemplate(product) {
         <h3>${product.Name}</h3>
         <p class="product-card__price">$${product.FinalPrice}</p>
       </a>
-
-    </li>`
-
     </li>
     `;
-
 }
 
 export default class ProductList {
   constructor(category, dataSource, listElement) {
-
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
@@ -35,13 +26,6 @@ export default class ProductList {
   }
 
   renderList(list) {
-  const htmlStrings = list.map(productCardTemplate);
-  this.listElement.insertAdjacentHTML('afterbegin', htmlStrings.join(''));
-}
-}
-
-
-  renderList(list) {
     // const htmlStrings = list.map(productCardTemplate);
     // this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
 
@@ -51,4 +35,3 @@ export default class ProductList {
   }
 
 }
-
