@@ -16,8 +16,9 @@ function renderCartContents() {
 }
 
 // Function to calculate total price of items in the cart
-function sumPrices(items){
-  items.forEach(item => { // Iterate through each item to calculate total price
+function sumPrices(items) {
+  items.forEach((item) => {
+    // Iterate through each item to calculate total price
     totalPrice += item.FinalPrice; // Add item's price to totalPrice
   });
 
