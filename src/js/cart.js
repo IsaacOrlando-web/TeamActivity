@@ -5,13 +5,14 @@ const totalCartPrice = document.getElementById("cart-total-price"); // Get the e
 const cartFooter = document.querySelector(".cart-footer"); // Get the footer element, to hide it if cart is empty
 
 function renderCartContents() {
+  //console.log("Cart items:", getLocalStorage("so-cart"));
   const cartItems = getLocalStorage("so-cart");
   if (!cartItems || cartItems.length === 0) {
     cartFooter.classList.add("hide"); // Hide footer if cart is empty
   } else {
     totalCartPrice.textContent = `$${sumPrices(cartItems)}`; // Display total price in the footer
   }
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+  const htmlItems = cartItems ? cartItems.map((item) => cartItemTemplate(item)) : [];
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
 
