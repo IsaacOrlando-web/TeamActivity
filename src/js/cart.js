@@ -1,45 +1,63 @@
 import { getLocalStorage } from "./utils.mjs";
 
-let totalPrice = 0; //Global variable to hold total price
-const totalCartPrice = document.getElementById("cart-total-price"); // Get the element to display total price
-const cartFooter = document.querySelector(".cart-footer"); // Get the footer element, to hide it if cart is empty
+let totalPrice = 0;
+const totalCartPrice = document.getElementById("cart-total-price");
+const cartFooter = document.querySelector(".cart-footer");
 
 function renderCartContents() {
-  //console.log("Cart items:", getLocalStorage("so-cart"));
   const cartItems = getLocalStorage("so-cart");
+  totalPrice = 0; // Resetear el total
+  
   if (!cartItems || cartItems.length === 0) {
-    cartFooter.classList.add("hide"); // Hide footer if cart is empty
+    cartFooter.classList.add("hide");
+    document.querySelector(".product-list").innerHTML = "<p>Your cart is empty</p>";
+    return;
   } else {
-    totalCartPrice.textContent = `$${sumPrices(cartItems)}`; // Display total price in the footer
+    cartFooter.classList.remove("hide");
+    totalCartPrice.textContent = `$${sumPrices(cartItems)}`;
   }
-  const htmlItems = cartItems ? cartItems.map((item) => cartItemTemplate(item)) : [];
+  
+  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  
+  setupRemoveButtons();
 }
 
-// Function to calculate total price of items in the cart
 function sumPrices(items) {
-  items.forEach((item) => {
-    // Iterate through each item to calculate total price
-    totalPrice += item.FinalPrice; // Add item's price to totalPrice
-  });
-
-  return totalPrice; // Return the total price
+  return items.reduce((total, item) => total + item.FinalPrice, 0);
 }
 
 function cartItemTemplate(item) {
-  const newItem = `<li class="cart-card divider">
+  return `<li class="cart-card divider" data-id="${item.Id}">
     <a href="/product_pages/${item.Id}.html" class="cart-card__image">
       <img src="${item.Image}" alt="${item.Name}" />
     </a>
     <a href="/product_pages/${item.Id}.html">
       <h2 class="card__name">${item.Name}</h2>
     </a>
+    <button class="cart-card__remove" data-id="${item.Id}">X</button>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
     <p class="cart-card__quantity">qty: 1</p>
     <p class="cart-card__price">$${item.FinalPrice}</p>
   </li>`;
-
-  return newItem;
 }
 
+function setupRemoveButtons() {
+  document.querySelector(".product-list").addEventListener("click", function(e) {
+    if (e.target.classList.contains("cart-card__remove")) {
+      if (confirm("Are you sure you want to remove this item from your cart?")) {
+        removeItemFromCart(e.target.dataset.id);
+      }
+    }
+  });
+}
+
+function removeItemFromCart(productId) {
+  let cartItems = getLocalStorage("so-cart") || [];
+  const updatedCart = cartItems.filter(item => item.Id !== productId);
+  localStorage.setItem("so-cart", JSON.stringify(updatedCart));
+  renderCartContents();
+}
+
+// Inicializar
 renderCartContents();
