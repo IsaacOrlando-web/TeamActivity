@@ -2,7 +2,7 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: '/',
+  base: "/",
   root: "src/",
 
   build: {
@@ -25,6 +25,7 @@ export default defineConfig({
           __dirname,
           "src/product_pages/northface-talus-4.html",
         ),
+        product_dynamic: resolve(__dirname, "src/product_pages/index.html"), 
       },
     },
   },
