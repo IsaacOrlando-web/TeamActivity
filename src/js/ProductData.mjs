@@ -9,7 +9,10 @@ function convertToJson(res) {
 export default class ProductData {
   constructor(category) {
     this.category = category;
-    this.path = `../json/${this.category}.json`;
+    // Check the path and calculate 
+    const currentDepth = window.location.pathname.split("/").length - 2;
+    const prefix = "../".repeat(currentDepth);
+    this.path = `${prefix}json/${this.category}.json`;
   }
   getData() {
     return fetch(this.path)
