@@ -24,10 +24,12 @@ function renderCartContents() {
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
   
   setupRemoveButtons();
+
+  setupQuantityChange();
 }
 
 function sumPrices(items) {
-  return items.reduce((total, item) => total + item.FinalPrice, 0);
+  return items.reduce((total, item) => total + (item.FinalPrice * (item.Quantity || 1)), 0);
 }
 
 function cartItemTemplate(item) {
@@ -40,8 +42,10 @@ function cartItemTemplate(item) {
     </a>
     <button class="cart-card__remove" data-id="${item.Id}">X</button>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">qty: 1</p>
-    <p class="cart-card__price">$${item.FinalPrice}</p>
+    <label>Qty:
+      <input type="number" class="cart-card__quantity-input" min="1" value="${item.Quantity || 1}" data-id="${item.Id}" />
+    </label>
+    <p class="cart-card__price">$${(item.FinalPrice * (item.Quantity || 1)).toFixed(2)}</p>
   </li>`;
 }
 
@@ -60,6 +64,22 @@ function removeItemFromCart(productId) {
   const updatedCart = cartItems.filter(item => item.Id !== productId);
   localStorage.setItem("so-cart", JSON.stringify(updatedCart));
   renderCartContents();
+}
+
+
+function setupQuantityChange() {
+  document.querySelectorAll('.cart-card__quantity-input').forEach(input =>
+    input.addEventListener('change', e => {
+      const qty = Math.max(1, parseInt(e.target.value, 10));
+      e.target.value = qty;
+      const id = e.target.dataset.id;
+      const cart = (getLocalStorage("so-cart") || []).map(item =>
+        item.Id === id ? {...item, Quantity: qty} : item
+      );
+      localStorage.setItem("so-cart", JSON.stringify(cart));
+      renderCartContents();
+    })
+  );
 }
 
 // Inicializar
