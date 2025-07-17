@@ -31,7 +31,7 @@ export default class ProductList {
 
   async init() {
     console.log(`Loading products for category: ${this.category}`);
-    const list = await this.dataSource.getData();
+    const list = await this.dataSource.getData(this.category);
     console.log(list);
     this.renderList(list);
   }
