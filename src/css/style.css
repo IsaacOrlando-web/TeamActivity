@@ -292,10 +292,10 @@ footer {
 }
 
 .categories-container {
-  margin-top: 150px;
+  margin-top: 3rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   gap: 1rem;
 }
 
