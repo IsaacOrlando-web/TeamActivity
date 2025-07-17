@@ -1,4 +1,7 @@
+import {loadHeaderFooter} from "./utils.mjs";
 import { getLocalStorage } from "./utils.mjs";
+
+loadHeaderFooter();
 
 let totalPrice = 0;
 const totalCartPrice = document.getElementById("cart-total-price");
@@ -29,10 +32,10 @@ function sumPrices(items) {
 
 function cartItemTemplate(item) {
   return `<li class="cart-card divider" data-id="${item.Id}">
-    <a href="/product_pages/${item.Id}.html" class="cart-card__image">
+    <a href="/product_pages/?products=${item.Id}" class="cart-card__image">
       <img src="${item.Image}" alt="${item.Name}" />
     </a>
-    <a href="/product_pages/${item.Id}.html">
+    <a href="/product_pages/?products=${item.Id}">
       <h2 class="card__name">${item.Name}</h2>
     </a>
     <button class="cart-card__remove" data-id="${item.Id}">X</button>
