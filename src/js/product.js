@@ -1,4 +1,9 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import ProductData from "./ProductData.mjs";
+import { getParam } from "./utils.mjs";
+import {loadHeaderFooter} from "./utils.mjs";
+
+loadHeaderFooter();
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -46,6 +51,11 @@ function productDetailsTemplate(product) {
 
   document.getElementById("addToCart").dataset.id = product.Id;
 }
+
+const productId = getParam("products"); 
+const dataSource = new ProductData("tents");
+const product = new ProductDetails(productId, dataSource);
+product.init();
 
 // ************* Alternative Display Product Details Method *******************
 // function productDetailsTemplate(product) {
