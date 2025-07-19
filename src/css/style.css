@@ -286,3 +286,21 @@ footer {
   border-radius: 4px;
   margin-top: 6px;
 }
+
+.categories-container img{
+  width: 90px;
+}
+
+.categories-container {
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.categories-container figcaption {
+  text-align: center;
+  font-size: var(--font-headline);
+  color: var(--dark-grey);
+}
