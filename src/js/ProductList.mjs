@@ -11,7 +11,7 @@ function productCardTemplate(product) {
   return `
     <li class="product-card">
       <a href="/product_pages/?products=${product.Id}">
-        <img src="${product.Image}" alt="${product.Name}">
+        <img src="${product.Images.PrimaryMedium}" alt="${product.Name}">
         <h2>${product.Brand.Name}</h2>
         <h3>${product.Name}</h3>
         <p class="product-card__price">$${product.FinalPrice}</p>
@@ -27,20 +27,35 @@ export default class ProductList {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.originalList = []; //original list
   }
 
   async init() {
-    const list = await this.dataSource.getData();
+    const list = await this.dataSource.getData(this.category);
+    this.originalList = list; //save list 
     this.renderList(list);
+    document.querySelector(".title").textContent = this.category;
+
+    this.setupSort(); //initialize sorting
+  }
+
+  setupSort() {
+    const select = document.getElementById("sort");
+    select.addEventListener("change", (event) => {
+      const value = event.target.value;
+      let sortedList = [...this.originalList];
+
+      if (value === "name") {
+        sortedList.sort((a, b) => a.Name.localeCompare(b.Name)); //order to alfabetical
+      } else if (value === "price") {
+        sortedList.sort((a, b) => a.FinalPrice - b.FinalPrice);
+      }
+
+      this.renderList(sortedList);
+    });
   }
 
   renderList(list) {
-    // const htmlStrings = list.map(productCardTemplate);
-    // this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
-
-    // apply use new utility function instead of the commented code above
     renderListWithTemplate(productCardTemplate, this.listElement, list);
-
   }
-
 }
