@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,8 +9,8 @@
 </head>
 
 <body>
-  <header id="main-header" class="divider">
-  </header>
+  <header id="main-header" class="divider"></header>
+
   <main class="divider">
     <div class="hero">
       <img src="/images/banner-sm.jpg" srcset="images/banner-sm.jpg 500w, images/banner.jpg"
@@ -28,13 +27,31 @@
       </div>
     </div>
 
-    <section class="products">
+    <section class="categories">
+      <a href="./product_listing/?category=tents">
+        <img src="/images/icons/tents.svg" alt="Tents">
+        <p>Tents</p>
+      </a>
+      <a href="./product_listing/index.html?category=backpacks">
+        <img src="./images/icons/backpacks.svg" alt="Backpacks">
+        <p>Backpacks</p>
+      </a>
+      <a href="./product_listing/index.html?category=sleeping-bags">
+        <img src="./images/icons/sleepingbags.svg" alt="Sleeping Bags">
+        <p>Sleeping Bags</p>
+      </a>
+      <a href="./product_listing/index.html?category=hammocks">
+        <img src="./images/icons/hammocks.svg" alt="Hammocks">
+        <p>Hammocks</p>
+      </a>
+    </section>
+
+    <!-- <section class="products">
       <h2>Top Products</h2>
       <ul class="product-list"></ul>
-    </section>
+    </section> -->
   </main>
-  <footer id="main-footer">
-  </footer>
-</body>
 
+  <footer id="main-footer"></footer>
+</body>
 </html>

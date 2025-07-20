@@ -40,8 +40,8 @@ function productDetailsTemplate(product) {
   document.querySelector("h3").textContent = product.NameWithoutBrand;
 
   const productImage = document.getElementById("productImage");
-  productImage.src = product.Image;
-  productImage.alt = product.NameWithoutBrand;
+  productImage.src = product.Images.PrimaryLarge;
+  productImage.alt = product.Name;
 
   document.getElementById("productPrice").textContent = product.FinalPrice;
   document.getElementById("productColor").textContent =
@@ -52,8 +52,8 @@ function productDetailsTemplate(product) {
   document.getElementById("addToCart").dataset.id = product.Id;
 }
 
-const productId = getParam("products"); 
-const dataSource = new ProductData("tents");
+const productId = getParam("product"); 
+const dataSource = new ProductData();
 const product = new ProductDetails(productId, dataSource);
 product.init();
 
