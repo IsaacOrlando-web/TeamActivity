@@ -1,7 +1,8 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import { getParam } from "./utils.mjs";
-import {loadHeaderFooter} from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
+import { updateCartCount } from "./utils.mjs";
 
 loadHeaderFooter();
 
@@ -28,6 +29,7 @@ export default class ProductDetails {
     const cartItems = getLocalStorage("so-cart") || [];
     cartItems.push(this.product);
     setLocalStorage("so-cart", cartItems);
+    updateCartCount();
   }
 
   renderProductDetails() {
@@ -52,7 +54,7 @@ function productDetailsTemplate(product) {
   document.getElementById("addToCart").dataset.id = product.Id;
 }
 
-const productId = getParam("products"); 
+const productId = getParam("products");
 const dataSource = new ProductData("tents");
 const product = new ProductDetails(productId, dataSource);
 product.init();
