@@ -131,6 +131,22 @@ button {
   fill: gray;
 }
 
+.cart-count {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  background-color: var(--tertiary-color);
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 5%;
+  right: -20%;
+  font-size: 12px;
+  font-weight: bold;
+}
+
 /* End cart icon styles */
 
 .mission {
@@ -321,3 +337,20 @@ footer {
   margin-top: 6px;
 }
 
+.categories-container img{
+  width: 90px;
+}
+
+.categories-container {
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.categories-container figcaption {
+  text-align: center;
+  font-size: var(--font-headline);
+  color: var(--dark-grey);
+}

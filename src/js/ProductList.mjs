@@ -31,8 +31,14 @@ export default class ProductList {
   }
 
   async init() {
+
     const list = await this.dataSource.getData(this.category);
     this.originalList = list; //save list 
+
+    console.log(`Loading products for category: ${this.category}`);
+    const list = await this.dataSource.getData(this.category);
+    console.log(list);
+
     this.renderList(list);
     document.querySelector(".title").textContent = this.category;
 

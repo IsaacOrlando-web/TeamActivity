@@ -1,5 +1,6 @@
 import {loadHeaderFooter} from "./utils.mjs";
 import { getLocalStorage } from "./utils.mjs";
+import { updateCartCount } from "./utils.mjs";
 
 loadHeaderFooter();
 
@@ -20,7 +21,9 @@ function renderCartContents() {
     totalCartPrice.textContent = `$${sumPrices(cartItems)}`;
   }
   
+  console.log(cartItems);
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+  
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
   
   setupRemoveButtons();
@@ -59,8 +62,13 @@ function removeItemFromCart(productId) {
   let cartItems = getLocalStorage("so-cart") || [];
   const updatedCart = cartItems.filter(item => item.Id !== productId);
   localStorage.setItem("so-cart", JSON.stringify(updatedCart));
+  updateCartCount();
   renderCartContents();
 }
 
 // Inicializar
 renderCartContents();
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateCartCount();
+});
