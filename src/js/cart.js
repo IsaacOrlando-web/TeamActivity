@@ -60,6 +60,7 @@ function removeItemFromCart(productId) {
   let cartItems = getLocalStorage("so-cart") || [];
   const updatedCart = cartItems.filter(item => item.Id !== productId);
   localStorage.setItem("so-cart", JSON.stringify(updatedCart));
+  updateCartCount();
   renderCartContents();
 }
 
