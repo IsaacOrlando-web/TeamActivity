@@ -34,7 +34,7 @@ function sumPrices(items) {
 function cartItemTemplate(item) {
   return `<li class="cart-card divider" data-id="${item.Id}">
     <a href="/product_pages/?products=${item.Id}" class="cart-card__image">
-      <img src="${item.Image}" alt="${item.Name}" />
+      <img src="${item.Images.PrimaryMedium}" alt="${item.Name}" />
     </a>
     <a href="/product_pages/?products=${item.Id}">
       <h2 class="card__name">${item.Name}</h2>
