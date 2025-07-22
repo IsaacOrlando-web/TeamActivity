@@ -110,8 +110,32 @@ button {
   cursor: pointer;
 }
 
+.product-detail__add button {
+  background-color: #556B2F;
+  color: white;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.product-detail__add button:hover {
+  background-color: #445522;
+  transform: translateY(-2px);
+}
+
+.product-detail__add button:active {
+  transform: scale(0.97);
+}
+
 .divider {
+  font-size: 1.1rem;
   border-bottom: 2px solid var(--primary-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 /* End utility classes */
@@ -199,6 +223,12 @@ button {
   margin: 0.5em 0;
 }
 
+.product-card__price {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
 .card__brand {
   font-size: var(--small-font);
 }
@@ -217,6 +247,41 @@ button {
 
 .product-detail img {
   width: 100%;
+}
+
+.product-detail__content {
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 16px;
+  display: flex;
+  gap: 2rem;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.product-detail__image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.product-detail__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product__color {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+.product__description {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
 }
 
 /* Start cart list card styles */
@@ -303,8 +368,17 @@ footer {
   margin-top: 6px;
 }
 
+.original-price {
+  text-decoration: line-through;
+  font-size: 0.85em;
+  color: #888;
+  font-weight: normal;
+}
+
+
 .categories-container img{
   width: 90px;
+  transition: transform 0.3s ease;
 }
 
 .categories-container {
@@ -319,4 +393,14 @@ footer {
   text-align: center;
   font-size: var(--font-headline);
   color: var(--dark-grey);
+}
+
+.categories-container a {
+  text-align: center;
+  text-decoration: none;
+  padding: 1rem;
+}
+
+.categories-container a:hover img {
+  transform: scale(1.1);
 }
