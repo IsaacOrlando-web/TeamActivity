@@ -110,7 +110,7 @@ button {
   cursor: pointer;
 }
 
-.product-detail__add button {
+.product-detail__add button, .checkout-submit{
   background-color: #556B2F;
   color: white;
   padding: 0.8rem 2rem;
@@ -405,12 +405,49 @@ footer {
   transform: scale(1.1);
 }
 
-form fieldset {
+.review-tittle{
+  text-align: center;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+}
+
+fieldset {
   margin-top: 2px;
   padding: 12px;
   display: grid;
   grid-column: 1fr;
+  border: 2px solid var(--primary-color);
+  font-family: var(--font-headline);
+  width: 3rem;
+  & label{
+    margin-top: 10px;
+  }
+  & input{
+    margin-top: 10px;
+    width: 30rem;
+    padding: 2px;
+  }
 }
+
+.checkout-information{
+    background: #fff8f0;
+    border: 2px solid var(--primary-color);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(240, 168, 104, 0.08);
+    padding: 2rem 2.5rem;
+    margin: 2rem auto;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
 
 .cart-card__quantity-input{
   width: 3rem;
