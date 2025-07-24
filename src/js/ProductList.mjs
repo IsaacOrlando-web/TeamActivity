@@ -36,13 +36,21 @@ export default class ProductList {
     this.renderList(list);
   }
 
-  renderList(list) {
-    // const htmlStrings = list.map(productCardTemplate);
-    // this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
-
-    // apply use new utility function instead of the commented code above
+renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
-
   }
-
 }
+
+// ✅ Search form function FIXED IN HERE:
+document.addEventListener("DOMContentLoaded", () => {
+  const searchForm = document.querySelector(".search-form");
+  if (searchForm) {
+    searchForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const query = document.querySelector(".search-input").value.trim();
+      if (query) {
+        window.location.href = `/product-list.html?query=${encodeURIComponent(query)}`;
+      }
+    });
+  }
+});
