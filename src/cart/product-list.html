@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sleep Outside | Product List</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/js/ProductList.mjs" type="module" defer></script>
+</head>
+
+<body>
+  <header id="main-header" class="divider">
+    <nav class="navbar">
+      <a href="/" class="logo">Sleep Outside</a>
+      <form action="/product-list.html" method="GET" class="search-form">
+        <input 
+          type="text" 
+          name="query" 
+          placeholder="Search for a product..." 
+          required 
+          class="search-input"
+        />
+        <button type="submit" class="search-button">Search</button>
+      </form>
+    </nav>
+  </header>
+
+  <main class="divider">
+    <section class="products">
+      <h2 id="search-title">Search Results</h2>
+      <ul id="product-results" class="product-list">
+      </ul>
+    </section>
+  </main>
+
+  <footer id="main-footer"></footer>
+</body>
+</html>

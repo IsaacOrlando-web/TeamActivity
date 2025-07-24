@@ -15,7 +15,21 @@
 </head>
 
 <body>
-  <header id="main-header" class="divider"></header>
+  <header id="main-header" class="divider">
+    <nav class="navbar">
+      <a href="/" class="logo">Sleep Outside</a>
+      <form action="/product-list.html" method="GET" class="search-form">
+        <input 
+          type="text" 
+          name="query" 
+          placeholder="Search for a product..." 
+          required 
+          class="search-input"
+        />
+        <button type="submit" class="search-button">Search</button>
+      </form>
+    </nav>
+  </header>
 
   <main class="divider">
     <section class="products">
