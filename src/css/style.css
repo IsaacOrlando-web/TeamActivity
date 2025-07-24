@@ -411,3 +411,7 @@ form fieldset {
   display: grid;
   grid-column: 1fr;
 }
+
+.cart-card__quantity-input{
+  width: 3rem;
+}
