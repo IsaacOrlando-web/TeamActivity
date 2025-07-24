@@ -16,14 +16,56 @@
   <header id="main-header" class="divider">
   </header>
 
-  <main class="divider">
-    <section class="products">
-      <h2>Review & Place your Order</h2>
-    </section>
-  </main>
+<main class="checkout-divider">
+  <form id="checkoutForm">
+    <fieldset>
+      <legend>Shipping Information</legend>
+      <div class="form-grid">
+        <input type="text" name="fname" placeholder="First Name" required>
+        <input type="text" name="lname" placeholder="Last Name" required>
+        <input type="text" name="street" placeholder="Street Address" required>
+        <input type="text" name="city" placeholder="City" required>
+        <input type="text" name="state" placeholder="State" required>
+        <input type="text" name="zip" placeholder="Zip Code" required>
+      </div>
+    </fieldset>
 
-  <footer id="main-footer">
-  </footer>
+    <fieldset>
+      <legend>Payment Information</legend>
+      <div class="form-grid">
+        <input type="text" name="cardNumber" placeholder="Card Number" required>
+        <input type="text" name="expiration" placeholder="Expiration Date (MM/YY)" required>
+        <input type="text" name="cvv" placeholder="CVV" required>
+        <input type="text" name="nameOnCard" placeholder="Name on Card" required>
+      </div>
+    </fieldset>
+
+    <div class="submit-container">
+      <button type="submit">Finish Order</button>
+    </div>
+  </form>
+
+  <div class="order-summary">
+    <p>Subtotal: <span id="subtotal"></span></p>
+    <p>Tax: <span id="tax"></span></p>
+    <p>Shipping Estimate: <span id="shipping"></span></p>
+    <p>Order Total: <span id="total"></span></p>
+  </div>
+</main>
+
+<footer id="main-footer"></footer>
+
+<script type="module" src="../js/checkouthandler.js"></script>
+
+<div id="order-confirmation" class="modal hide">
+  <div class="modal-content">
+    <h2>Order successfully placed!</h2>
+    <p>Thank you for your purchase, <span id="customer-name"></span>.</p>
+    <p>Your order number has been generated successfully.</p>
+    <button id="close-confirmation">Close</button>
+  </div>
+</div>
+
 </body>
 
 </html>
