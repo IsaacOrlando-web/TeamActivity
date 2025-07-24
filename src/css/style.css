@@ -404,3 +404,14 @@ footer {
 .categories-container a:hover img {
   transform: scale(1.1);
 }
+
+form fieldset {
+  margin-top: 2px;
+  padding: 12px;
+  display: grid;
+  grid-column: 1fr;
+}
+
+.cart-card__quantity-input{
+  width: 3rem;
+}
