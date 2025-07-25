@@ -27,6 +27,12 @@ export default class ProductDetails {
 
   addProductToCart() {
     const cartItems = getLocalStorage("so-cart") || [];
+    const found = cartItems.find((element) => element.Id === this.product.Id);
+    if (found) {
+      console.log("Encontrado");
+    } else {
+      console.log("primera vez");
+    }
     cartItems.push(this.product);
     setLocalStorage("so-cart", cartItems);
     updateCartCount();
