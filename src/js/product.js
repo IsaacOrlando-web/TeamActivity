@@ -1,5 +1,5 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import { getParam } from "./utils.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 import { updateCartCount } from "./utils.mjs";
@@ -85,7 +85,7 @@ function productDetailsTemplate(product) {
 }
 
 const productId = getParam("products");
-const dataSource = new ProductData("tents");
+const dataSource = new ExternalServices("tents");
 const product = new ProductDetails(productId, dataSource);
 product.init();
 
