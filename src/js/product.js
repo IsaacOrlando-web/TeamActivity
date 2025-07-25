@@ -29,11 +29,15 @@ export default class ProductDetails {
     const cartItems = getLocalStorage("so-cart") || [];
     const found = cartItems.find((element) => element.Id === this.product.Id);
     if (found) {
-      console.log("Encontrado");
+      found.Quantity = (found.Quantity || 0) + 1; // Si existe, incrementa Quantity (o la inicializa en 1 si no existe)
+      console.log("Cantidad actualizada:", found.Quantity);
+      found.FinalPrice = found.FinalPrice * found.Quantity;
     } else {
-      console.log("primera vez");
+      this.product.Quantity = 1; // Añade Quantity = 1 al producto nuevo
+      cartItems.push(this.product);
+      console.log("Producto añadido por primera vez");
     }
-    cartItems.push(this.product);
+    
     setLocalStorage("so-cart", cartItems);
     updateCartCount();
   }
