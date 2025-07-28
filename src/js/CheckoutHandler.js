@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const subtotal = checkout.calculateSubtotal();
   checkout.calculateTaxAndShipping(subtotal);
 
-  document.querySelector('input[name="zip"]').addEventListener("input", () => {
+  document.querySelector("input[name='zip']").addEventListener("input", () => {
     const currentSubtotal = checkout.calculateSubtotal();
     checkout.calculateTaxAndShipping(currentSubtotal);
   });
@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 document.getElementById("checkoutForm").addEventListener("submit", async (event) => {
   event.preventDefault();
-  const result = await checkout.checkout(event.target);
+  //const result = await checkout.checkout(event.target); warning  'result' is assigned a value but never used  no-unused-vars
 
   const formData = new FormData(event.target);
   const fullName = `${formData.get("fname")} ${formData.get("lname")}`;
