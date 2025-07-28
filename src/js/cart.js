@@ -96,3 +96,24 @@ renderCartContents();
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
 });
+
+// Cart its empty notification
+document.getElementById("checkout-trigger").addEventListener("click", () => {
+  const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
+
+  if (cartItems.length === 0) {
+
+    showCartEmptyNotice();
+  } else {
+
+    window.location.href = "../checkout/index.html";
+  }
+});
+
+function showCartEmptyNotice() {
+  document.getElementById("cart-empty-modal").classList.remove("hide");
+}
+
+document.getElementById("cart-empty-close").addEventListener("click", () => {
+  document.getElementById("cart-empty-modal").classList.add("hide");
+});
