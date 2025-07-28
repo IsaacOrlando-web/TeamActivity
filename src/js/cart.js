@@ -4,13 +4,12 @@ import { updateCartCount } from "./utils.mjs";
 
 loadHeaderFooter();
 
-let totalPrice = 0;
 const totalCartPrice = document.getElementById("cart-total-price");
 const cartFooter = document.querySelector(".cart-footer");
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  totalPrice = 0; // Resetear el total
+  //const totalPrice = 0;
   
   if (!cartItems || cartItems.length === 0) {
     cartFooter.classList.add("hide");
@@ -21,7 +20,6 @@ function renderCartContents() {
     totalCartPrice.textContent = `$${sumPrices(cartItems).toFixed(2)}`;
   }
   
-  console.log(cartItems);
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
@@ -76,8 +74,8 @@ function removeItemFromCart(productId) {
 
 
 function setupQuantityChange() {
-  document.querySelectorAll('.cart-card__quantity-input').forEach(input =>
-    input.addEventListener('change', e => {
+  document.querySelectorAll(".cart-card__quantity-input").forEach(input =>
+    input.addEventListener("change", e => {
       const qty = Math.max(1, parseInt(e.target.value, 10));
       e.target.value = qty;
       const id = e.target.dataset.id;
@@ -95,4 +93,25 @@ renderCartContents();
 
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
+});
+
+// Cart its empty notification
+document.getElementById("checkout-trigger").addEventListener("click", () => {
+  const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
+
+  if (cartItems.length === 0) {
+
+    showCartEmptyNotice();
+  } else {
+
+    window.location.href = "../checkout/index.html";
+  }
+});
+
+function showCartEmptyNotice() {
+  document.getElementById("cart-empty-modal").classList.remove("hide");
+}
+
+document.getElementById("cart-empty-close").addEventListener("click", () => {
+  document.getElementById("cart-empty-modal").classList.add("hide");
 });
