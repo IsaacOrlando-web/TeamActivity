@@ -473,6 +473,7 @@ fieldset {
   max-width: 450px;
   text-align: center;
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  position: relative;
 }
 
 .modal-content h2 {
@@ -490,6 +491,15 @@ fieldset {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.modal .close { 
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
 }
 
 .hide {
