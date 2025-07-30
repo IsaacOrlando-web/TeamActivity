@@ -1,15 +1,14 @@
 import { loadHeaderFooter } from "./utils.mjs";
 import { getLocalStorage } from "./utils.mjs";
+import { updateCartCount } from "./utils.mjs";
 
 loadHeaderFooter();
 
-let totalPrice = 0;
 const totalCartPrice = document.getElementById("cart-total-price");
 const cartFooter = document.querySelector(".cart-footer");
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  totalPrice = 0;
 
   if (!cartItems || cartItems.length === 0) {
     cartFooter.classList.add("hide");
@@ -17,10 +16,11 @@ function renderCartContents() {
     return;
   } else {
     cartFooter.classList.remove("hide");
-    totalCartPrice.textContent = `$${sumPrices(cartItems)}`;
+    totalCartPrice.textContent = `$${sumPrices(cartItems).toFixed(2)}`;
   }
 
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+  
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
   setupRemoveButtons();
@@ -36,7 +36,7 @@ function sumPrices(items) {
 function cartItemTemplate(item) {
   return `<li class="cart-card divider" data-id="${item.Id}">
     <a href="/product_pages/?products=${item.Id}" class="cart-card__image">
-      <img src="${item.Image}" alt="${item.Name}" />
+      <img src="${item.Images.PrimaryMedium}" alt="${item.Name}" />
     </a>
     <a href="/product_pages/?products=${item.Id}">
       <h2 class="card__name">${item.Name}</h2>
@@ -52,26 +52,23 @@ function cartItemTemplate(item) {
 }
 
 function setupRemoveButtons() {
-  document.querySelector(".product-list").addEventListener("click", function (e) {
-    if (e.target.classList.contains("cart-card__remove")) {
-      if (confirm("Are you sure you want to remove this item from your cart?")) {
-        removeItemFromCart(e.target.dataset.id);
-      }
+
     }
-  });
+  }
 }
 
 function removeItemFromCart(productId) {
   let cartItems = getLocalStorage("so-cart") || [];
   const updatedCart = cartItems.filter(item => item.Id !== productId);
   localStorage.setItem("so-cart", JSON.stringify(updatedCart));
+  updateCartCount();
   renderCartContents();
 }
 
 
 function setupQuantityChange() {
-  document.querySelectorAll('.cart-card__quantity-input').forEach(input =>
-    input.addEventListener('change', e => {
+  document.querySelectorAll(".cart-card__quantity-input").forEach(input =>
+    input.addEventListener("change", e => {
       const qty = Math.max(1, parseInt(e.target.value, 10));
       e.target.value = qty;
       const id = e.target.dataset.id;
@@ -84,33 +81,3 @@ function setupQuantityChange() {
   );
 }
 
-// 🆕 Wishlist Button Logic
-function setupWishlistButtons() {
-  document.querySelectorAll('.wishlist-toggle').forEach(button =>
-    button.addEventListener('click', e => {
-      const productId = e.target.dataset.id;
-      const cartItems = getLocalStorage("so-cart") || [];
-      const wishlistItems = getLocalStorage("so-wishlist") || [];
-
-      // Find the product in the cart
-      const product = cartItems.find(item => item.Id === productId);
-      if (!product) return;
-
-      
-      const alreadyInWishlist = wishlistItems.some(item => item.Id === productId);
-      if (!alreadyInWishlist) {
-        wishlistItems.push(product);
-        localStorage.setItem("so-wishlist", JSON.stringify(wishlistItems));
-      }
-
-      // Remove from cart
-      const updatedCart = cartItems.filter(item => item.Id !== productId);
-      localStorage.setItem("so-cart", JSON.stringify(updatedCart));
-
-      renderCartContents();
-    })
-  );
-}
-
-// Initialize
-renderCartContents();
