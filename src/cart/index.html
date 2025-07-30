@@ -10,7 +10,7 @@
   <title>Sleep Outside | Cart</title>
 
   <link rel="stylesheet" href="/css/style.css" />
-
+  
   <script src="/js/cart.js" type="module"></script>
 </head>
 
@@ -58,6 +58,7 @@
             data-product-id="product-1"
           />
           <p class="cart-card__price">$199.99</p>
+          <button class="wishlist-toggle" data-product-id="product-1">Move to Wishlist</button>
         </li>
 
         <!-- Cart Item 2 -->
@@ -82,6 +83,7 @@
             data-product-id="product-2"
           />
           <p class="cart-card__price">$199.99</p>
+          <button class="wishlist-toggle" data-product-id="product-2">Move to Wishlist</button>
         </li>
       </ul>
     </section>
@@ -90,6 +92,12 @@
   <div class="cart-footer">
     <p class="cart-total">Total: <span id="cart-total-price"></span></p>
   </div>
+
+  <!-- Optional Wishlist Preview or Redirect -->
+  <section class="wishlist-preview divider">
+    <h2>Want to save for later?</h2>
+    <p>View your <a href="/wishlist.html">Wishlist</a></p>
+  </section>
 
   <footer id="main-footer"></footer>
 </body>

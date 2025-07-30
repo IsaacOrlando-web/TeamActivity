@@ -1,4 +1,4 @@
-import {loadHeaderFooter} from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 import { getLocalStorage } from "./utils.mjs";
 
 loadHeaderFooter();
@@ -9,8 +9,8 @@ const cartFooter = document.querySelector(".cart-footer");
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  totalPrice = 0; // Resetear el total
-  
+  totalPrice = 0;
+
   if (!cartItems || cartItems.length === 0) {
     cartFooter.classList.add("hide");
     document.querySelector(".product-list").innerHTML = "<p>Your cart is empty</p>";
@@ -19,13 +19,14 @@ function renderCartContents() {
     cartFooter.classList.remove("hide");
     totalCartPrice.textContent = `$${sumPrices(cartItems)}`;
   }
-  
+
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  
-  setupRemoveButtons();
 
+  setupRemoveButtons();
+  
   setupQuantityChange();
+  setupWishlistButtons();
 }
 
 function sumPrices(items) {
@@ -46,11 +47,12 @@ function cartItemTemplate(item) {
       <input type="number" class="cart-card__quantity-input" min="1" value="${item.Quantity || 1}" data-id="${item.Id}" />
     </label>
     <p class="cart-card__price">$${(item.FinalPrice * (item.Quantity || 1)).toFixed(2)}</p>
+    <button class="wishlist-toggle" data-id="${item.Id}">Move to Wishlist</button>
   </li>`;
 }
 
 function setupRemoveButtons() {
-  document.querySelector(".product-list").addEventListener("click", function(e) {
+  document.querySelector(".product-list").addEventListener("click", function (e) {
     if (e.target.classList.contains("cart-card__remove")) {
       if (confirm("Are you sure you want to remove this item from your cart?")) {
         removeItemFromCart(e.target.dataset.id);
@@ -74,7 +76,7 @@ function setupQuantityChange() {
       e.target.value = qty;
       const id = e.target.dataset.id;
       const cart = (getLocalStorage("so-cart") || []).map(item =>
-        item.Id === id ? {...item, Quantity: qty} : item
+        item.Id === id ? { ...item, Quantity: qty } : item
       );
       localStorage.setItem("so-cart", JSON.stringify(cart));
       renderCartContents();
@@ -82,5 +84,33 @@ function setupQuantityChange() {
   );
 }
 
-// Inicializar
+// 🆕 Wishlist Button Logic
+function setupWishlistButtons() {
+  document.querySelectorAll('.wishlist-toggle').forEach(button =>
+    button.addEventListener('click', e => {
+      const productId = e.target.dataset.id;
+      const cartItems = getLocalStorage("so-cart") || [];
+      const wishlistItems = getLocalStorage("so-wishlist") || [];
+
+      // Find the product in the cart
+      const product = cartItems.find(item => item.Id === productId);
+      if (!product) return;
+
+      // Add to wishlist (if not already there)
+      const alreadyInWishlist = wishlistItems.some(item => item.Id === productId);
+      if (!alreadyInWishlist) {
+        wishlistItems.push(product);
+        localStorage.setItem("so-wishlist", JSON.stringify(wishlistItems));
+      }
+
+      // Remove from cart
+      const updatedCart = cartItems.filter(item => item.Id !== productId);
+      localStorage.setItem("so-cart", JSON.stringify(updatedCart));
+
+      renderCartContents();
+    })
+  );
+}
+
+// Initialize
 renderCartContents();
