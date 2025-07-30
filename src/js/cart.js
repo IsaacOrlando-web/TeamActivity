@@ -24,7 +24,7 @@ function renderCartContents() {
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
   setupRemoveButtons();
-  
+
   setupQuantityChange();
   setupWishlistButtons();
 }
@@ -96,7 +96,7 @@ function setupWishlistButtons() {
       const product = cartItems.find(item => item.Id === productId);
       if (!product) return;
 
-      // Add to wishlist (if not already there)
+      
       const alreadyInWishlist = wishlistItems.some(item => item.Id === productId);
       if (!alreadyInWishlist) {
         wishlistItems.push(product);
