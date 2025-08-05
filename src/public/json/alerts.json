@@ -1,0 +1,12 @@
+[
+  {
+    "message": "This is only a test",
+    "background": "darkblue",
+    "color": "white"
+  },
+  {
+    "message": "Cozy up under the stars! All sleeping bags are 20% off for a limited time.",
+    "background": "darkred",
+    "color": "white"
+  }
+]

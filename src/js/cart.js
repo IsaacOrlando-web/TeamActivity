@@ -51,11 +51,11 @@ function cartItemTemplate(item) {
   </li>`;
 }
 
-function setupRemoveButtons() {
+/**function setupRemoveButtons() {
 
     }
   }
-}
+}**/
 
 function removeItemFromCart(productId) {
   let cartItems = getLocalStorage("so-cart") || [];

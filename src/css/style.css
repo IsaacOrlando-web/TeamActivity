@@ -60,6 +60,33 @@ p {
   color: var(--font-body);
 }
 
+/* Alert seccion*/
+.alert-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 10px;
+}
+
+.scrolling-text {
+  white-space: nowrap;
+  animation: scroll-left 25s linear infinite;
+  animation-delay: 3s; 
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateY(-50%) translateX(0);
+  }
+  100% {
+    transform: translateY(-50%) translateX(-100%);
+  }
+}
+
 .hero {
   position: relative;
 }
