@@ -1,4 +1,3 @@
-import Alert from "./Alert.js";
 import { loadHeaderFooter } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
@@ -16,6 +15,4 @@ productList.init();
 
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
-  const alert = new Alert();
-  alert.init();
 });
