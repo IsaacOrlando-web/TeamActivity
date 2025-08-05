@@ -71,7 +71,7 @@ p {
 .scrolling-text {
   white-space: nowrap;
   animation: scroll-left 25s linear infinite;
-  animation-delay: 3s; 
+  animation-delay: 3s;
   position: absolute;
   top: 50%;
   left: 0;
@@ -137,8 +137,9 @@ button {
   cursor: pointer;
 }
 
-.product-detail__add button, .checkout-submit{
-  background-color: #556B2F;
+.product-detail__add button,
+.checkout-submit {
+  background-color: #556b2f;
   color: white;
   padding: 0.8rem 2rem;
   font-size: 1rem;
@@ -146,7 +147,9 @@ button {
   border-radius: 8px;
   cursor: pointer;
   margin-top: 2rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .product-detail__add button:hover {
@@ -282,7 +285,7 @@ button {
   border-radius: 16px;
   display: flex;
   gap: 2rem;
-  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-family: "Segoe UI", Roboto, sans-serif;
 }
 
 .product-detail__image img {
@@ -369,12 +372,12 @@ button {
   font-size: var(--small-font);
   padding: 1em;
 } */
- 
+
 .hide {
   display: none;
 }
 
-.cart-card__remove{
+.cart-card__remove {
   grid-row: 1/3;
   grid-column: 4;
   background-color: var(--tertiary-color);
@@ -402,8 +405,7 @@ button {
   font-weight: normal;
 }
 
-
-.categories-container img{
+.categories-container img {
   width: 90px;
   transition: transform 0.3s ease;
 }
@@ -432,11 +434,11 @@ button {
   transform: scale(1.1);
 }
 
-.review-tittle{
+.review-tittle {
   text-align: center;
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -452,31 +454,30 @@ fieldset {
   border: 2px solid var(--primary-color);
   font-family: var(--font-headline);
   width: 3rem;
-  & label{
+  & label {
     margin-top: 10px;
   }
-  & input{
+  & input {
     margin-top: 10px;
     width: 30rem;
     padding: 2px;
   }
 }
 
-.checkout-information{
-    background: #fff8f0;
-    border: 2px solid var(--primary-color);
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(240, 168, 104, 0.08);
-    padding: 2rem 2.5rem;
-    margin: 2rem auto;
-    max-width: 420px;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+.checkout-information {
+  background: #fff8f0;
+  border: 2px solid var(--primary-color);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(240, 168, 104, 0.08);
+  padding: 2rem 2.5rem;
+  margin: 2rem auto;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-
-.cart-card__quantity-input{
+.cart-card__quantity-input {
   width: 3rem;
 }
 
@@ -486,7 +487,7 @@ fieldset {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -499,7 +500,7 @@ fieldset {
   border-radius: 10px;
   max-width: 450px;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .modal-content h2 {
@@ -570,7 +571,7 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-  border-color: #049DBF;
+  border-color: #049dbf;
   outline: none;
   box-shadow: 0 0 0 3px rgba(4, 157, 191, 0.15);
 }
@@ -581,7 +582,7 @@ input[type="text"]:focus {
 
 button[type="submit"],
 button#close-confirmation {
-  background-color: #049DBF;
+  background-color: #049dbf;
   color: white;
   padding: 0.9rem 2rem;
   border: none;
