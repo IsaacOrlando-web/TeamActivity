@@ -28,6 +28,8 @@ body {
 
 img {
   max-width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 header {
@@ -60,17 +62,19 @@ p {
   color: var(--font-body);
 }
 
-/* Alert seccion*/
+/* Alert seccion */
 .alert-container {
   width: 100%;
   overflow: hidden;
   position: relative;
-  padding: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  animation: slideIn 0.5s ease-in-out;
 }
 
 .scrolling-text {
   white-space: nowrap;
-  animation: scroll-left 25s linear infinite;
+  animation: scroll-left 15s linear infinite;
   animation-delay: 3s;
   position: absolute;
   top: 50%;
@@ -80,12 +84,25 @@ p {
 
 @keyframes scroll-left {
   0% {
-    transform: translateY(-50%) translateX(0);
+    transform: translateY(-50%) translateX(100%);
   }
   100% {
     transform: translateY(-50%) translateX(-100%);
   }
 }
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* End Alert */
+
 
 .hero {
   position: relative;
@@ -284,13 +301,24 @@ button {
   padding: 2rem;
   border-radius: 16px;
   display: flex;
+  flex-direction: column;
   gap: 2rem;
   font-family: "Segoe UI", Roboto, sans-serif;
 }
 
-.product-detail__image img {
+.product-detail__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  min-height: 300px;
+}
+
+.product-detail__image img {
+  display: block;
   max-width: 400px;
+  width: auto;
+  height: auto;
   border-radius: 12px;
   object-fit: cover;
 }
@@ -300,6 +328,11 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.product-detail__info h2,
+.product-detail__info h3 {
+  text-align: center;
 }
 
 .product__color {
@@ -352,7 +385,7 @@ button {
   grid-column: 3;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 769px) {
   body {
     max-width: 1080px;
     margin: auto;
@@ -366,16 +399,29 @@ button {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
+
+  .product-detail__content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .product-detail__image {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* centro horizontal */
+    align-items: center; /* centro vertical (opcional) */
+  }
+
+  .product-detail__info h2,
+  .product-detail__info h3 {
+    text-align: left;
+  }
 }
 
 /* footer {
   font-size: var(--small-font);
   padding: 1em;
 } */
-
-.hide {
-  display: none;
-}
 
 .cart-card__remove {
   grid-row: 1/3;

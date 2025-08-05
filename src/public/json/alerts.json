@@ -1,12 +1,26 @@
 [
   {
-    "message": "This is only a test",
-    "background": "darkblue",
+    "category": "tents",
+    "message": "Adventure Awaits! Get 10% off all Tents this week.",
+    "background": "#004080",
     "color": "white"
   },
   {
-    "message": "Cozy up under the stars! All sleeping bags are 20% off for a limited time.",
-    "background": "darkred",
+    "category": "backpacks",
+    "message": "Carry Comfortably! Backpacks are now buy 1, get 1 50% off!",
+    "background": "#005030",
+    "color": "white"
+  },
+  {
+    "category": "sleeping-bags",
+    "message": "Cozy up! All Sleeping Bags are 20% off.",
+    "background": "#800000",
+    "color": "white"
+  },
+  {
+    "category": "hammocks",
+    "message": "Swing into savings! Hammocks now 15% off!",
+    "background": "#804000",
     "color": "white"
   }
 ]
