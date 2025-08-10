@@ -7,7 +7,8 @@ import { updateCartCount } from "./utils.mjs";
 loadHeaderFooter();
 
 export default class ProductDetails {
-  constructor(productIdP, dataSourceP) { //'productId' is already declared in the upper scope on line 87 column 7. a "P" for parameter
+  constructor(productIdP, dataSourceP) {
+    //'productId' is already declared in the upper scope on line 87 column 7. a "P" for parameter
     this.productIdP = productIdP;
     this.product = {};
     this.dataSource = dataSourceP;
@@ -37,7 +38,7 @@ export default class ProductDetails {
       cartItems.push(this.product);
       //console.log("Producto añadido por primera vez");
     }
-    
+
     setLocalStorage("so-cart", cartItems);
     updateCartCount();
   }
@@ -47,19 +48,49 @@ export default class ProductDetails {
   }
 }
 
-function productDetailsTemplate(productP) { //'product' is already declared in the upper scope on line 89 column 7 Using "P" for Parameter
+function productDetailsTemplate(productP) {
+  //'product' is already declared in the upper scope on line 89 column 7 Using "P" for Parameter
   document.querySelector("h2").textContent = productP.Brand.Name;
   document.querySelector("h3").textContent = productP.NameWithoutBrand;
 
-  const productImage = document.getElementById("productImage");
-  productImage.src = productP.Images.PrimaryLarge;
-  productImage.alt = productP.NameWithoutBrand;
+  // Update the image section to use the different sizes
+
+  const productImageLarge = document.querySelector(
+    'source[media="(min-width: 1281px)"]',
+  );
+  const productImageMedium = document.querySelector(
+    'source[media="(min-width: 769px) and (max-width: 1280px)"]',
+  );
+  const productImageSmall = document.querySelector(
+    'source[media="(max-width: 768px)"]',
+  );
+
+  const productImageFallback = document.getElementById("productImage");
+
+  if (productImageLarge) {
+    productImageLarge.srcset = productP.Images.PrimaryExtraLarge;
+  }
+
+  if (productImageMedium) {
+    productImageMedium.srcset = productP.Images.PrimaryLarge;
+  }
+
+  if (productImageSmall) {
+    productImageSmall.srcset = productP.Images.PrimaryLarge;
+  }
+
+  // Set a fallback image and alt text for all browsers
+  productImageFallback.src = productP.Images.PrimaryLarge;
+  productImageFallback.alt = productP.NameWithoutBrand;
+  productImageFallback.loading = "lazy";
 
   // Discount calculation
   const isDiscounted = productP.FinalPrice < productP.SuggestedRetailPrice;
   const discountPercent = isDiscounted
     ? Math.round(
-        ((productP.SuggestedRetailPrice - productP.FinalPrice) / productP.SuggestedRetailPrice) * 100
+        ((productP.SuggestedRetailPrice - productP.FinalPrice) /
+          productP.SuggestedRetailPrice) *
+          100,
       )
     : 0;
 

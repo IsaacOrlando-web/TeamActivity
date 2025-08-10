@@ -1,27 +1,29 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Sleep Outside | Marmot Ajax 3 person tent</title>
+  <title>Sleep Outside | Product Detail</title>
 
   <link rel="stylesheet" href="/css/style.css" />
-
   <script src="../js/product.js" type="module"></script>
 </head>
 
 <body>
-  <header id="main-header" class="divider">
-  </header>
+  <header id="main-header" class="divider"></header>
+
   <main class="divider">
     <section class="product-detail__content">
       <div class="product-detail__image">
-        <img id="productImage" src="" alt="" />
+        <picture>
+          <source media="(min-width: 1281px)" srcset="">
+          <source media="(min-width: 769px) and (max-width: 1280px)" srcset="">
+          <source media="(max-width: 768px)" srcset="">
+          <img id="productImage" src="" alt="" loading="lazy">
+        </picture>
       </div>
+
       <div class="product-detail__info">
         <h2 id="productBrand" class="product-card__brand"></h2>
         <h3 id="productName" class="divider"></h3>
@@ -34,9 +36,8 @@
       </div>
     </section>
   </main>
-  <footer id="main-footer">
-  </footer>
 
+  <footer id="main-footer"></footer>
 </body>
 
 </html>

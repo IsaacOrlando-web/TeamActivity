@@ -1,5 +1,5 @@
-const baseURL = import.meta.env.VITE_SERVER_URL
-//const baseURL = "https://wdd330-backend.onrender.com/"; // this was something tempora to work localy
+//const baseURL = import.meta.env.VITE_SERVER_URL
+const baseURL = "https://wdd330-backend.onrender.com/"; // this was something tempora to work localy
 
 function convertToJson(res) {
   if (res.ok) {
